@@ -14,15 +14,21 @@ word_bank = ['python', 'guitar', 'coffee', 'breeze', 'window', 'galaxy', 'jungle
 
 total_session_games = 0
 
-while True:
-    start_game_response = input("Do you want to play hangman?\n YES: enter y\n NO: enter n")
-    if start_game_response == 'y':
-        game_is_active = True
-    elif start_game_response == 'n':
-        game_is_active = False
-    else:
-        print("Unfortunately, that's an an invalid input. Please enter y or n.")
-    
+def start_game():
+    while True:
+        start_game_response = input("Do you want to play hangman?\n YES: enter y\n NO: enter n\n").lower().strip()
+        if start_game_response == 'y':
+            return True
+        elif start_game_response == 'n':
+            return False
+        else:
+            print("Unfortunately, that's an an invalid input.")
+
+game_started =  start_game()
+
+while game_started:
+    print("The game is running")
+    game_started = False
     
 
 #while game_is_active:
