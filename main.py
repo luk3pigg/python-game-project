@@ -6,9 +6,6 @@ import game_functions as gf
 #adjust times/time depending on number ie 1 is time, times is 2+
 
 
-#Main lessons:
-    
-#Alternative to while True and return in functions, is while True and break.
 
 
 #create a word bank (start with 6 letters)

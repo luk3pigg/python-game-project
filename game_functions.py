@@ -2,14 +2,15 @@ import random
 
 def start_game():
     '''starts the game based on user input'''
+    start_game_response = input("Welcome! Do you want to play hangman?\nYES: enter y\nNO: enter n\n").lower().strip()
     while True:
-        start_game_response = input("Do you want to play hangman?\n YES: enter y\n NO: enter n\n").lower().strip()
         if start_game_response == 'y':
             return True
         elif start_game_response == 'n':
+            print("\nOh, never mind. Have a nice day!")
             return False
         else:
-            print("Unfortunately, that's an an invalid input.")
+            start_game_response = input("\nUnfortunately, that's an an invalid input. Please try again.\nYES: enter y\nNO: enter n\n").lower().strip()
 
 def select_word(word_bank):
     '''Selects a word at random from the word bank'''
@@ -48,11 +49,15 @@ def guess_result(guessed_letters, chosen_word, display_word, letter_guess, lives
 
 def restart_game():
     '''restarts the game based on user input'''
+    restart_game_response = input("Do you want to play the game again?\n YES: enter y\n NO: enter n\n").lower().strip()
     while True:
-        restart_game_response = input("Do you want to play the game again?\n YES: enter y\n NO: enter n\n").lower().strip()
         if restart_game_response == 'y':
             return True
         elif restart_game_response == 'n':
+            print("\nOh, never mind. Have a nice day!")
             return False
         else:
-            print("Unfortunately, that's an an invalid input.")
+            restart_game_response = input("\nUnfortunately, that's an an invalid input. Please try again.\n YES: enter y\n NO: enter n\n").lower().strip()
+            
+            
+
