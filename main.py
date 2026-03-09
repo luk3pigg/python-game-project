@@ -42,22 +42,36 @@ def letter_validation(total_guesses):
         else:
             print("\n\n\nThat guess was invalid.")
 
-def guess_result(letter_guess, lives, correct_guesses):
+def guess_result(letter_guess, lives, correct_guesses, game_won):
     '''Adds guess to guessed letters list, determines if guess is correct, and updates lives accordingly '''
     guessed_letters.append(letter_guess)
     if letter_guess in chosen_word:
-        print("\n\n\nCorrect guess!")
         ocurrences = 0
         for i, letter in enumerate(chosen_word):
             if letter == letter_guess:
                 ocurrences += 1
                 display_word[i] = letter_guess
-        print(f"Your guess appears in the secret word {ocurrences} times!")
         correct_guesses += ocurrences
+        if correct_guesses == len(chosen_word):
+            game_won = True
+        else:
+            print("\n\n\nCorrect guess!")
+            print(f"Your guess appears in the secret word {ocurrences} times!")
     else:
         print("\n\n\nIncorrect guess...Unlucky!")
         lives -= 1
-    return lives, correct_guesses
+    return lives, correct_guesses, game_won
+
+def restart_game():
+    '''restarts the game based on user input'''
+    while True:
+        restart_game_response = input("Do you want to play the game again?\n YES: enter y\n NO: enter n\n").lower().strip()
+        if restart_game_response == 'y':
+            return True
+        elif restart_game_response == 'n':
+            return False
+        else:
+            print("Unfortunately, that's an an invalid input.")
 
 #starting the game
 total_session_games = 0
@@ -83,32 +97,21 @@ while game_active:
         print(*display_word)
         
         letter_guess, total_guesses = letter_validation(total_guesses)
-        lives, correct_guesses = guess_result(letter_guess=letter_guess, lives=lives, correct_guesses=correct_guesses)
+        lives, correct_guesses, game_won = guess_result(letter_guess=letter_guess, lives=lives, correct_guesses=correct_guesses, game_won=game_won)
     
-        if correct_guesses == len(chosen_word):
-            game_won = True
+        
     
     if game_won:
-        print("You won!")
+        print(f"You won! The secret word was {chosen_word}!")
     else:
-        print("Oh no! You have run out of lives!")
+        print(f"Oh no! You have run out of lives! The correct word was {chosen_word}")
+    #stats
+    total_session_games += 1
+    print(f"Total games you have played in this session: {total_session_games}")
+    #restart game option
+    game_active = restart_game()
+    
 
 
-
-#main game
-#display current state of word: blanks for unrevaled letters
-
-
-
-#limited number of incorrect guesses - typically X amount
-
-#take letter guess from user - make sure hasn't already been guessed, and must be a letter. make it lowercase
-
-#reveal if this letter is part of word or not
-
-#repeat process until either number of gusses used up, or word is guessed  orrectyl
-
-
-#ask if user wnats to repeat the game. 
 
 
